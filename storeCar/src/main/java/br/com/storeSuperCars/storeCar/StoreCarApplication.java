@@ -1,4 +1,4 @@
-package br.com.storeSuperCars.storeCar;
+package br.com.storesupercars.storecar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -23,7 +23,7 @@ public class UserModel {
   private String name;
   private String email;
   @Column(name = "idade")
-  private Number age;
+  private Integer age;
   @Column(name = "senha")
   private String password;
 

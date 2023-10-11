@@ -1,5 +1,9 @@
 package br.com.storesupercars.storecar.cars;
 
-public interface ICarRepository {
+import java.util.UUID;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ICarRepository extends JpaRepository<CarModel, UUID> {
 
 }

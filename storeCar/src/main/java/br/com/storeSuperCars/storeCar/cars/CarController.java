@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.storesupercars.storecar.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -50,6 +53,18 @@ public class CarController {
     var cars = this.carRepository.findByIdUser((UUID) idUser);
 
     return cars;
+  }
+
+  @PutMapping("/{id}")
+  public CarModel update(@RequestBody CarModel carModel, HttpServletRequest request, @PathVariable UUID id) {
+
+    var car = this.carRepository.findById(id).orElse(null);
+
+    Utils.copyNonNullProperties(carModel, car);
+
+    return this.carRepository.save(car);
+
+    // ResponseEntity.status(HttpStatus.OK).body(car);
   }
 
 }

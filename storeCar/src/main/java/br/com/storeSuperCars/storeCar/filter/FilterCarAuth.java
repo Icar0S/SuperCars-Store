@@ -26,7 +26,7 @@ public class FilterCarAuth extends OncePerRequestFilter {
 
     var servletPath = request.getServletPath();
 
-    if (servletPath.equals("/cars/")) {
+    if (servletPath.startsWith("/cars/")) {
 
       // pegar auth
       var authorization = request.getHeader("Authorization");

@@ -44,6 +44,9 @@ public class CarModel {
   @Column(name = "ano")
   private Integer year;
 
+  @Column(name = "preço")
+  private Float price;
+
   @Column(name = "placa", length = 7)
   private String plate;
 

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.storeSuperCars</groupId>
 	<artifactId>storeCar</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>storeCar</name>
 	<description>Loja ecommerce de super carros</description>
 	<properties>

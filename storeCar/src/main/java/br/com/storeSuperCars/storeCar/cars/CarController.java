@@ -56,15 +56,25 @@ public class CarController {
   }
 
   @PutMapping("/{id}")
-  public CarModel update(@RequestBody CarModel carModel, HttpServletRequest request, @PathVariable UUID id) {
+  public ResponseEntity update(@RequestBody CarModel carModel, HttpServletRequest request, @PathVariable UUID id) {
 
     var car = this.carRepository.findById(id).orElse(null);
 
+    if (car == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body("Carro não encontrado");
+    }
+
+    var idUser = request.getAttribute("idUser");
+
+    if (!car.getIdUser().equals(idUser)) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body("Usuário não tem permissão para editar esse carro.");
+    }
+
     Utils.copyNonNullProperties(carModel, car);
-
-    return this.carRepository.save(car);
-
-    // ResponseEntity.status(HttpStatus.OK).body(car);
+    var carUpdated = this.carRepository.save(car);
+    return ResponseEntity.ok().body(this.carRepository.save(carUpdated));
   }
 
 }
